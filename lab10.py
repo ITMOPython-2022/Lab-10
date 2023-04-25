@@ -1,7 +1,7 @@
 from vosk import Model, KaldiRecognizer
 import json
 import wave
-import pyaudio
+import pyttsx3
 
 model = Model('vosk-model-small-ru-0.4')
 
@@ -30,3 +30,9 @@ res = json.loads(rec.FinalResult())
 result += f" {res['text']}"
 
 print(result)
+
+#Works only on MacOS
+engine = pyttsx3.init('nsss')
+engine.setProperty('voice', 'com.apple.speech.synthesis.voice.yuri')
+engine.say(result)
+engine.runAndWait()
